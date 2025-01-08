@@ -18,7 +18,10 @@ public class Main {
             System.out.println("1. Create a Student ");
             System.out.println("2. Create a Teacher ");
             System.out.println("3. Create a Subject ");
-            System.out.println("4. Exit ");
+            System.out.println("4. Print Students ");
+            System.out.println("5. Print Teachers ");
+            System.out.println("6. Print Subjects");
+            System.out.println("7. Exit ");
 
             option = sc.nextInt();
 
@@ -36,10 +39,19 @@ public class Main {
                     subjectList.add(subject);
                     break;
                 case 4:
+                    printStudentList(studentList);
+                    break;
+                case 5:
+                    printTeacherList(teacherList);
+                    break;
+                case 6:
+                    printSubjectList(subjectList);
+                    break;
+                case 7:
                     System.out.println("***** Exit System *******");
                     break;
             }
-        } while(option != 4);
+        } while (option != 7);
     }
 
     public static Student createStudent() {
@@ -74,18 +86,18 @@ public class Main {
 
     public static void printTeacherList(List<Teacher> teacherList) {
         int index = 1;
-        for(Teacher teacher : teacherList) {
+        for (Teacher teacher : teacherList) {
             System.out.println(index + " . " + teacher.getName().toUpperCase()
-                    + " - " +  teacher.getLastName().toUpperCase());
+                    + " - " + teacher.getLastName().toUpperCase());
             index = index + 1;
         }
     }
 
     public static void printStudentList(List<Student> studentList) {
         int index = 1;
-        for(Student student : studentList) {
+        for (Student student : studentList) {
             System.out.println(index + " . " + student.getName().toUpperCase()
-                    + " - " +  student.getLastName().toUpperCase());
+                    + " - " + student.getLastName().toUpperCase());
             index = index + 1;
         }
     }
@@ -105,14 +117,30 @@ public class Main {
         System.out.println("Please enter the no. of Students to register: ");
         int noOfStudent = scanner.nextInt();
 
-        for(int n = 0; n < noOfStudent; n++) {
+        for (int n = 0; n < noOfStudent; n++) {
             System.out.println("Please select a student: ");
             printStudentList(studentList);
             int studentOption = scanner.nextInt();
             Student student = studentList.get(studentOption - 1);
             students.add(student);
         }
-
         return new Subject(name, teacher, students);
     }
+
+    public static void printSubjectList(List<Subject> subjectList) {
+        int index = 1;
+        for (Subject subject : subjectList) {
+            System.out.println(index + " . " + subject.getName().toUpperCase());
+            index = index + 1;
+            System.out.println("  . " + subject.getTeacher().getName().toUpperCase()
+                    + " - " + subject.getTeacher().getLastName().toUpperCase());
+            for (Student student : subject.getStudentList()) {
+                System.out.println("  . " + student.getName().toUpperCase()
+                        + " - " + student.getLastName().toUpperCase());
+            }
+        }
+
+    }
 }
+
+
