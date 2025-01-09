@@ -130,12 +130,12 @@ public class Main {
     public static void printSubjectList(List<Subject> subjectList) {
         int index = 1;
         for (Subject subject : subjectList) {
-            System.out.println(index + " . " + subject.getName().toUpperCase());
+            System.out.println("Subject name: " + subject.getName().toUpperCase());
             index = index + 1;
-            System.out.println("  . " + subject.getTeacher().getName().toUpperCase()
+            System.out.println("Teacher: " + subject.getTeacher().getName().toUpperCase()
                     + " - " + subject.getTeacher().getLastName().toUpperCase());
             for (Student student : subject.getStudentList()) {
-                System.out.println("  . " + student.getName().toUpperCase()
+                System.out.println("Student: " + student.getName().toUpperCase()
                         + " - " + student.getLastName().toUpperCase());
             }
         }
